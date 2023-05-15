@@ -57,6 +57,7 @@ body {
 
 .posts {
 	flex: 2 0 0;
+	position: relative;
 }
 
 .sidebar,
@@ -64,8 +65,11 @@ body {
 	background: $color-light;
 	margin-right: 10px;
 	padding: 40px;
+	height: auto;
+	max-height: 800px;
 	border: 1px solid $color-dark;
 	border-radius: 5px;
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .post-content {
@@ -88,11 +92,23 @@ body {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+	text-decoration: none;
 	.active {
 		font-weight: bold;
+		color: $color-font-header;
+		text-decoration: none;
 	}
 }
 
+.titles {
+	li {
+		a {
+			color: $color-dark;
+			text-decoration: underline;
+			line-height: 2;
+		}
+	}
+}
 .list-horizontal {
 	li {
 		display: inline-block;
@@ -109,10 +125,25 @@ body {
 
 /* Post */
 
+// .post {
+// 	display: none;
+// 	&.active {
+// 		display: block;
+// 	}
+// }
+
 .post {
-	display: none;
+	opacity: 0;
+	height: 100%;
+
 	&.active {
-		display: block;
+		position: absolute;
+		opacity: 1;
+		height: 100%;
+		top: 0;
+		padding: 40px;
+		transition: all 1s ease-out;
+		overflow: auto;
 	}
 }
 
@@ -124,5 +155,36 @@ body {
 	display: flex;
 	p {
 		margin: 0 10px 0 0;
+	}
+}
+
+// Media
+
+@media (max-width: 768px) {
+	.wrapper {
+		flex-direction: column;
+		text-align: center;
+		justify-content: center;
+	}
+
+	.sidebar,
+	.posts {
+		margin-bottom: 15px;
+	}
+	.sidebar .list {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+	.sidebar .list li {
+		padding: 15px;
+	}
+
+	.post {
+		&.active {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
 	}
 }
