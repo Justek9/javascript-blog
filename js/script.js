@@ -57,7 +57,6 @@
 			// [DONE] generate HTML code and store it to const,
 			const linkHTML = '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>'
 			html = html + linkHTML
-			// console.log(html)
 		}
 
 		// [DONE] insert generated code to left column
@@ -65,6 +64,7 @@
 		ulList.insertAdjacentHTML('afterbegin', html)
 
 		const links = document.querySelectorAll('.titles a')
+		links[0].classList.add('active')
 
 		for (let link of links) {
 			link.addEventListener('click', titleClickHandler)
