@@ -124,27 +124,17 @@ body {
 
 /* Post */
 
-// .post {
-// 	display: none;
-// 	&.active {
-// 		display: block;
-// 	}
-// }
-
 .post {
 	position: absolute;
 	top: 0;
 	opacity: 0;
-	// height: 100%;
+	overflow: auto;
 
 	&.active {
-		// position: absolute;
 		opacity: 1;
 		height: 100%;
-		// top: 0;
 		padding: 40px;
 		transition: all 1s ease-out;
-		// overflow: auto;
 		z-index: 10;
 	}
 }
