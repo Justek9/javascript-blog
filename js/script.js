@@ -100,8 +100,8 @@
     const normalizedMax = params.max - params.min;
     const percentage = normalizedCount / normalizedMax;
     const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
-
-    return optCloudClassPrefix = `tag-size-${classNumber}`;
+    optCloudClassPrefix = `tag-size-${classNumber}`;
+    return optCloudClassPrefix;
   };
 
   const generateTags= function(){
@@ -155,12 +155,12 @@
     /* [NEW] create variable for all links HTML code */
     let allTagsHTML = '';
     const tagsParams = calculateTagsParams(allTags);
-    console.log('tagsParams:', tagsParams)
+    console.log('tagsParams:', tagsParams);
 
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
     /* [NEW] generate code of a link and add it to allTagsHTML */
-      allTagsHTML += `<li><a href="#tag-${tag}" class="${calculateTagClass(allTags[tag], tagsParams)}">${tag}(${allTags[tag]})</a></li>`;
+      allTagsHTML += `<li><a href="#tag-${tag}" class="${calculateTagClass(allTags[tag], tagsParams)}">${tag}</a></li>`;
       // const linkHTMLTags = `<li><a href="#tag-${tag}">${tag}</a></li>  `;
     
     /* [NEW] END LOOP: for each tag in allTags: */

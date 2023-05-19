@@ -76,6 +76,40 @@ body {
 	color: $color-dark;
 }
 
+/* Classes for tags */
+.tags li{
+	display: inline-block;
+}
+
+.tags li a {
+	text-decoration: none;
+	padding: 5px;
+	color: rgb(1, 1, 96);
+}
+
+.tag-size-1 {
+	font-size: 1em;
+
+}
+.tag-size-2 {
+	font-size: 1.2em;
+}
+
+.tag-size-3 {
+	font-size: 1.5em;
+}
+
+.tag-size-4 {
+	font-size: 1.7em;
+	font-weight: bold;
+}
+
+.tag-size-5 {
+	font-size: 2em;
+	font-weight: bold;
+}
+
+
 /* Logo */
 
 .logo {
