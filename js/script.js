@@ -7,6 +7,8 @@
   const optArticleTagsSelector = '.post-tags .list';
   const optArticleAuthorSelector ='.post-author';
   const optTagsListSelector = '.tags.list';
+  const optCloudClassCount = 5;
+  let optCloudClassPrefix = 'tag-size-';
 
   const titleClickHandler = function (event) {
     event.preventDefault();
@@ -50,12 +52,7 @@
     // for each article:
     //  [DONE] get id and store it to const
     const articles = document.querySelectorAll(optArticleSelector + customSelector);
-    console.log(document.querySelectorAll('.post[data-tags~="cat"]'));
     
-    console.log(optArticleSelector + customSelector);
-    console.log(articles);
-    // console.log(optArticleSelector + customSelector);
-
     let html = '';
     for (let article of articles) {
       // 	[DONE]const articleID = article.id
@@ -74,7 +71,6 @@
     ulList.insertAdjacentHTML('afterbegin', html);
 
     const links = document.querySelectorAll('.titles a');
-    console.log(links);
     // links[0].classList.add('active');
 
     for (let link of links) {
@@ -84,6 +80,29 @@
 
   generateTitleLinks();
 
+  const calculateTagsParams = function(tags){
+    const params ={
+      max: 0,
+      min: 99999,
+    };
+
+    for(let tag in tags){
+      // console.log(tag + ' is used ' + tags[tag] + ' times');
+      params.max = tags[tag] > params.max ? params.max = tags[tag] : params.max;
+      params.min = tags[tag] < params.min? params.min = tags[tag] :params.min;
+    }
+
+    return params;
+  };
+  
+  const calculateTagClass = function(count, params){
+    const normalizedCount = count - params.min;
+    const normalizedMax = params.max - params.min;
+    const percentage = normalizedCount / normalizedMax;
+    const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+
+    return optCloudClassPrefix = `tag-size-${classNumber}`;
+  };
 
   const generateTags= function(){
     /* [NEW] create a new variable allTags with an empty object */
@@ -132,15 +151,16 @@
 
     /* [NEW] find list of tags in right column */
     const tagList = document.querySelector(optTagsListSelector);
-    console.log(tagList);
 
     /* [NEW] create variable for all links HTML code */
     let allTagsHTML = '';
+    const tagsParams = calculateTagsParams(allTags);
+    console.log('tagsParams:', tagsParams)
 
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
     /* [NEW] generate code of a link and add it to allTagsHTML */
-      allTagsHTML += `<li><a href="#tag-${tag}">${tag}(${allTags[tag]})</a></li>`;
+      allTagsHTML += `<li><a href="#tag-${tag}" class="${calculateTagClass(allTags[tag], tagsParams)}">${tag}(${allTags[tag]})</a></li>`;
       // const linkHTMLTags = `<li><a href="#tag-${tag}">${tag}</a></li>  `;
     
     /* [NEW] END LOOP: for each tag in allTags: */
@@ -153,18 +173,15 @@
 
 
   const tagClickHandler = function (event){
-    console.log('a');
     /* [DONE] prevent default action for this event */
     event.preventDefault();
    
     /* [DONE] make new constant named "clickedElement" and give it the value of "this" */
     const clickedElement = this;
-    console.log(this);
     /* [DONE] make a new constant "href" and read the attribute "href" of the clicked element */
     const href = clickedElement.getAttribute('href');
     /* [DONE] make a new constant "tag" and extract tag from the "href" constant */
     const tag = href.replace('#tag-', '');
-    console.log(tag);
 
     /* [DONE]ind all tag links with class active */
     const tagLinksActive = document.querySelectorAll('a.active[href^="#tag-"]');
@@ -180,8 +197,7 @@
 
     /* [DONE] find all tag links with "href" attribute equal to the "href" constant */
     const tagLinksMatchingHref = document.querySelectorAll('a[href="' + href + '"]');
-    console.log(href, tag);
-    console.log(tagLinksMatchingHref);
+ 
 
     /* [DONE] START LOOP: for each found tag link */
     for (let activeTag of tagLinksMatchingHref){
@@ -201,8 +217,6 @@
   const addClickListenersToTags = function (){
   /* [DONE] find all links to tags */
     const linksToTags = document.querySelectorAll('a[href^="#tag-"]');
-    console.log(linksToTags);
-
 
     /* [DONE] START LOOP: for each link */
     for (let link of linksToTags){
