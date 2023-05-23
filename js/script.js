@@ -10,7 +10,6 @@
 
   };
 
-
   const opts ={
     optArticleSelector: '.post',
     optTitleSelector: '.post-title',
@@ -23,7 +22,6 @@
     optAuthorsListSelector: '.list.authors',
   };
  
-
   const titleClickHandler = function (event) {
     event.preventDefault();
     const clickedElement = this;

@@ -258,18 +258,18 @@
     <script id="template-article-link" type="text/x-handlebars-template">
         <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
     </script>
-    <script id='template-tagsAtBottomOfArticle-link' type="text/x-handlebars-template">
+    <script id="template-tagsAtBottomOfArticle-link" type="text/x-handlebars-template">
         <li><a href="#tag-{{ name }}"><span>{{ name }}</span></a></li>
     </script>
-    <script id='author-below-article-title' type="text/x-handlebars-template">
+    <script id="author-below-article-title" type="text/x-handlebars-template">
         <li><a href="#aut-{{ name }}"><span>{{ name }}</span></a></li>
     </script>
-    <script id='tag-cloud-link' type="text/x-handlebars-template">
+    <script id="tag-cloud-link" type="text/x-handlebars-template">
         {{#each tags}}
         <li><a href="#tag-{{ tag }}" class="{{className}}"><span>{{ tag }}</span></a></li>
         {{/each}}
     </script>
-    <script id='authors-list-link' type="text/x-handlebars-template">
+    <script id="authors-list-link" type="text/x-handlebars-template">
         {{#each authors}}
         <li><a href="#aut-{{ author }}"><span>{{ author }}({{ count }})</span></a></li>
         {{/each}}
